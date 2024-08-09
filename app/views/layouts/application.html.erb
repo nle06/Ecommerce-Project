@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>PrairieTechElectronics</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+ <%= javascript_importmap_tags %>
+  <%= stylesheet_link_tag 'application', 'data-turbo-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbo-track': 'reload' %>
+
+  <!-- Correct Bootstrap 5.1.0 CDN link with integrity -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRaa8GbJW5pXx4I5CxYp6Z90v7Ggxt8f4K5Zw5N5e" crossorigin="anonymous">
+
+  </head>
+
+
+<body>
+  <nav>
+    <%= link_to 'Cart', cart_path, class: 'btn btn-secondary' %>
+  </nav>
+
+  <div class="container mt-3">
+    <% flash.each do |key, value| %>
+      <div class="alert alert-<%= key == 'notice' ? 'success' : 'danger' %> alert-dismissible fade show" role="alert">
+        <%= value %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    <% end %>
+
+    <%= render 'shared/current_user' %>
+    <%= yield %>
+  </div>
+
+  <!-- Correct Bootstrap 5.1.0 JS CDN link with integrity -->
+  <%= javascript_include_tag 'https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/js/bootstrap.bundle.min.js', integrity: 'sha384-8xONmPs84t1E1+1eUuMPxYl9eP1lyfT2cJBCwMW3ilx3LLaa3RDIFkl8nYiq6QpL', crossorigin: 'anonymous' %>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<h1>Order Details</h1>
+
+<p>
+  <strong>Name:</strong>
+  <%= @order.name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @order.email %>
+</p>
+
+<h2>Shipping Address</h2>
+<p>
+  <strong>Street:</strong>
+  <%= @order.address.street %>
+</p>
+<p>
+  <strong>City:</strong>
+  <%= @order.address.city %>
+</p>
+<p>
+  <strong>Province:</strong>
+  <%= @order.address.province %>
+</p>
+<p>
+  <strong>Postal Code:</strong>
+  <%= @order.address.postal_code %>
+</p>
+
+<h2>Order Items</h2>
+<% if @order.order_items.any? %>
+  <% @order.order_items.each do |item| %>
+    <p>
+      <strong>Product:</strong>
+      <%= item.product.name %> <br>
+      <strong>Quantity:</strong>
+      <%= item.quantity %> <br>
+      <strong>Price:</strong>
+      <%= number_to_currency(item.price) %> <br>
+      <strong>Total:</strong>
+      <%= number_to_currency(item.quantity * item.price) %>
+    </p>
+  <% end %>
+<% else %>
+  <p>No items found for this order.</p>
+<% end %>
+
+<h2>Order Summary</h2>
+<p>
+  <strong>Subtotal:</strong>
+  <%= number_to_currency(@order.subtotal) %>
+</p>
+<p>
+  <strong>Tax:</strong>
+  <%= number_to_currency(@order.taxes) %>
+</p>
+<p>
+  <strong>Total:</strong>
+  <%= number_to_currency(@order.total) %>
+</p>

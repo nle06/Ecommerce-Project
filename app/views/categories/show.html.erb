@@ -1,0 +1,21 @@
+<h1 class="my-4"><%= @category.name %> Products</h1>
+
+<div class="container">
+  <div class="row">
+    <% @products.each do |product| %>
+      <div class="col-md-4">
+        <div class="card mb-4">
+          <div class="card-body">
+            <h5 class="card-title"><%= link_to product.name, product_path(product) %></h5>
+            <p class="card-text"><%= product.description %></p>
+            <p class="card-text">Price: $<%= product.price %></p>
+            <% if product.on_sale %>
+              <p class="card-text text-danger">Sale Price: $<%= product.sale_price %></p>
+            <% end %>
+            <p class="card-text">Category: <%= product.category.name %></p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
